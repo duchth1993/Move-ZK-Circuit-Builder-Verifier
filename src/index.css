@@ -1,0 +1,160 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@layer base {
+  :root {
+    --background: 240 15% 6%;
+    --foreground: 220 20% 92%;
+
+    --card: 240 12% 10%;
+    --card-foreground: 220 20% 92%;
+
+    --popover: 240 12% 10%;
+    --popover-foreground: 220 20% 92%;
+
+    --primary: 265 90% 62%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 70% 50%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 240 10% 16%;
+    --muted-foreground: 220 10% 55%;
+
+    --accent: 265 80% 55%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 80% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 260 30% 22%;
+    --input: 260 20% 18%;
+    --ring: 265 90% 62%;
+
+    --radius: 0.75rem;
+
+    --neon-purple: 265 90% 62%;
+    --neon-blue: 210 100% 60%;
+    --neon-cyan: 185 100% 55%;
+    --neon-green: 145 80% 50%;
+    --neon-red: 0 85% 58%;
+    --neon-yellow: 45 100% 60%;
+
+    --glass-bg: 240 15% 12%;
+    --glass-border: 260 40% 30%;
+
+    --sidebar-background: 240 15% 8%;
+    --sidebar-foreground: 220 20% 92%;
+    --sidebar-primary: 265 90% 62%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 10% 14%;
+    --sidebar-accent-foreground: 220 20% 92%;
+    --sidebar-border: 260 30% 20%;
+    --sidebar-ring: 265 90% 62%;
+
+    --font-display: 'Orbitron', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+    --font-body: 'Inter', sans-serif;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
+  }
+}
+
+@layer components {
+  .glass-panel {
+    @apply bg-card/60 backdrop-blur-xl border border-glass-border rounded-lg;
+  }
+  .glass-panel-strong {
+    @apply bg-card/80 backdrop-blur-2xl border border-glass-border rounded-lg;
+  }
+  .neon-glow-purple {
+    box-shadow: 0 0 10px hsl(var(--neon-purple) / 0.3),
+                0 0 30px hsl(var(--neon-purple) / 0.15),
+                inset 0 0 10px hsl(var(--neon-purple) / 0.05);
+  }
+  .neon-glow-blue {
+    box-shadow: 0 0 10px hsl(var(--neon-blue) / 0.3),
+                0 0 30px hsl(var(--neon-blue) / 0.15);
+  }
+  .neon-glow-green {
+    box-shadow: 0 0 10px hsl(var(--neon-green) / 0.4),
+                0 0 30px hsl(var(--neon-green) / 0.2);
+  }
+  .neon-text {
+    text-shadow: 0 0 10px hsl(var(--neon-purple) / 0.5),
+                 0 0 30px hsl(var(--neon-purple) / 0.3);
+  }
+  .circuit-node {
+    @apply glass-panel-strong neon-glow-purple p-4 rounded-xl cursor-grab active:cursor-grabbing;
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
+  }
+  .circuit-node:hover {
+    box-shadow: 0 0 20px hsl(var(--neon-purple) / 0.5),
+                0 0 50px hsl(var(--neon-purple) / 0.25),
+                inset 0 0 15px hsl(var(--neon-purple) / 0.1);
+    transform: translateY(-1px);
+  }
+  .drag-block {
+    @apply glass-panel p-3 rounded-lg cursor-grab active:cursor-grabbing select-none;
+    transition: all 0.2s ease;
+  }
+  .drag-block:hover {
+    @apply neon-glow-purple border-primary/50;
+    transform: translateY(-2px);
+  }
+  .code-block {
+    @apply bg-muted/50 rounded-lg p-4 font-mono text-sm overflow-auto;
+    font-family: var(--font-mono);
+  }
+}
+
+/* React Flow custom styles */
+.react-flow__edge-path {
+  stroke: hsl(var(--neon-purple)) !important;
+  stroke-width: 2 !important;
+  filter: drop-shadow(0 0 4px hsl(var(--neon-purple) / 0.5));
+}
+.react-flow__handle {
+  background: hsl(var(--neon-cyan)) !important;
+  border: 2px solid hsl(var(--neon-purple)) !important;
+  width: 10px !important;
+  height: 10px !important;
+}
+.react-flow__background {
+  background: hsl(var(--background)) !important;
+}
+.react-flow__minimap {
+  background: hsl(var(--card)) !important;
+  border: 1px solid hsl(var(--border)) !important;
+  border-radius: 8px !important;
+}
+.react-flow__controls {
+  border: 1px solid hsl(var(--border)) !important;
+  border-radius: 8px !important;
+  overflow: hidden;
+}
+.react-flow__controls-button {
+  background: hsl(var(--card)) !important;
+  border-bottom: 1px solid hsl(var(--border)) !important;
+  fill: hsl(var(--foreground)) !important;
+}
+.react-flow__controls-button:hover {
+  background: hsl(var(--muted)) !important;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: hsl(var(--background)); }
+::-webkit-scrollbar-thumb { background: hsl(var(--border)); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: hsl(var(--primary) / 0.5); }
