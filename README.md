@@ -1,2 +1,3 @@
-# Move-ZK-Circuit-Builder-Verifier
-move
+# Welcome to your Lovable project
+
+TODO: Document your project here
